@@ -54,14 +54,14 @@ uint64_t Reader::bytes_popped() const
 string_view Reader::peek() const
 {
   // Your code here.
-  return string_view(&buf.front(), 1);
+  return string_view(&buf.front(), buf.length());
 }
 
 void Reader::pop( uint64_t len )
 {
   // Your code here.
-  uint64_t poped_count = min(buf.size(), len);
-  buf.erase(buf.length() - poped_count);
+  uint64_t poped_count = min(buf.length(), len);
+  buf.erase(0, poped_count);
   poped_count_ += poped_count;
   return;
 }
